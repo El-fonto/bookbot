@@ -2,13 +2,25 @@ def main():
     book_path = "books/frankenstein.txt"
     text = get_book_path(book_path)
     words = count_words(text)
-    characters = count_characters(text)
-    print(f"this is the # of words in {book_path}: {words}")
-    print(f"this are the characters:{characters}")
+    character_dict = count_characters(text)
+    # print(f"this is the # of words in {book_path}: {words}")
+    report = order(character_dict)
+    print(f"--- Begin report of {book_path} ---")
+    print(f"{words} words found in the document")
+    for char, count in report:
+        print(f"The {char} character was found {count} times")
+    # print(f"these are the characters:{characters}")
+    print(f"--- End report---")
 
-def get_book_path(path):
-    with open(path) as f:
-        return f.read()
+def order(dict):
+    letters = []
+    for char, repeats in dict.items():
+        if char.isalpha():
+            letters.append((char, repeats))
+    # sort first, before returning the list
+    letters.sort(key=lambda item: item[1], reverse=True) 
+    return letters
+
 
 def count_words(text):
     words = text.split()
@@ -16,21 +28,18 @@ def count_words(text):
 
 def count_characters(text):
     # to save things
-    characters = {
+    characters = {}
 
-    }
-    # revisar variables aquí. Tienen una lógica incompleta. Es necesario, primero separar en palabras y separar el texto en palabras y luego en caracteres y después hacer un pretty print de lo que quiero.
-    lowered_text = text.lower().split()
-
-    for word in lowered_text:
-        if word in characters:
-            characters[word] += 1
+    for c in text:
+        lowered = c.lower()
+        if lowered in characters:
+            characters[lowered] += 1
         else:
-            characters[word] = 1
-
+            characters[lowered] = 1
     return characters
-    # TODO - split in characters with a for loop to iterate over a big string
     
-
+def get_book_path(path):
+    with open(path) as f:
+        return f.read()
 
 main()
