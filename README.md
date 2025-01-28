@@ -1,2 +1,4 @@
 # bookbot
-Bookbot is my first project. But this is the revamped version to try new things. 
+Bookbot was my first project on Boot.dev. I refactored it to make it more modular. 
+
+It is a tool to count characters from a given text document. It counts alphabetic counters and prints a report in the console.
