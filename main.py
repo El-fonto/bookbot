@@ -35,6 +35,7 @@ def character_counter(list):
     return counter_dict
 
 
+# list of dictionaries to make them sortable
 def alphabet_counter(dict):
     alpha_list = []
 
@@ -46,6 +47,7 @@ def alphabet_counter(dict):
     return alpha_list
 
 
+# to sort on repetitions
 def sort_on(dict):
     return dict["num"]
 
